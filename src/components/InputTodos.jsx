@@ -20,7 +20,6 @@ const InputTodos = ({ setReloadLoading, setEditTodo }) => {
         setReloadLoading((prev) => !prev);
         setDescription('');
         setEditTodo('');
-        console.log('createTodo', added_todo);
       }
     }
   };

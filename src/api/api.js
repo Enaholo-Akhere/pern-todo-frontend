@@ -1,13 +1,11 @@
 import axios from 'axios';
-const api_string_prod = 'https://pern-todo-backend.vercel.app/todos';
-const api_string_dev = 'http://localhost:5000/todos';
+const api_string_prod = import.meta.env.VITE_API_STRING_PROD;
+const api_string_dev = import.meta.env.VITE_API_STRING_DEV;
 const api = import.meta.env.PROD ? api_string_prod : api_string_dev;
 
 const addTodos = async (description) => {
-  console.log('description', description, 'api', api);
   try {
     const { data: added_todo } = await axios.post(api, { description });
-    console.log('added todo', added_todo);
     return { added_todo };
   } catch (err) {
     return err;

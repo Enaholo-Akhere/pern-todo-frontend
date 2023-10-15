@@ -44,6 +44,7 @@ const Todo = () => {
             setReloadLoading={setReloadLoading}
             setSwitchOp={setSwitchOp}
             setId={setId}
+            setEditTodo={setEditTodo}
           />
         )}
 
@@ -56,6 +57,7 @@ const Todo = () => {
           setId={setId}
           id={id}
           setSwitchOp={setSwitchOp}
+          editTodo={editTodo}
         />
       </div>
     </Fragment>

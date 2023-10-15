@@ -1,19 +1,23 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { editTodo as editTodoApi } from '../api/api';
 
-const EditInput = ({ setReloadLoading, editTodo, id, setSwitchOp, setId }) => {
-  const [description, setDescription] = useState(editTodo || '');
-
+const EditInput = ({
+  setReloadLoading,
+  editTodo,
+  id,
+  setSwitchOp,
+  setId,
+  setEditTodo,
+}) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const { result } = await editTodoApi(id, description);
+    const { result } = await editTodoApi(id, editTodo);
     if (result) {
       setReloadLoading((prev) => !prev);
       setSwitchOp(true);
       setId(null);
-      console.log('createTodo', result);
     }
   };
 
@@ -25,8 +29,8 @@ const EditInput = ({ setReloadLoading, editTodo, id, setSwitchOp, setId }) => {
         <input
           type='text'
           className='form-control'
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={editTodo}
+          onChange={(e) => setEditTodo(e.target.value)}
         />
         <button className='btn btn-success' type='submit'>
           Save
@@ -42,5 +46,6 @@ EditInput.propTypes = {
   id: PropTypes.number,
   setSwitchOp: PropTypes.func,
   setId: PropTypes.func,
+  setEditTodo: PropTypes.func,
 };
 export default EditInput;

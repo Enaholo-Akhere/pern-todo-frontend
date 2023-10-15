@@ -26,7 +26,12 @@ const ListTodos = ({
   };
 
   //delete todo
-  if (loading) return <p>loading...{String(loading)}</p>;
+  if (loading)
+    return (
+      <div className='text-center'>
+        <div className='spinner-border' role='status'></div>
+      </div>
+    );
   return (
     <Fragment>
       {data && (
@@ -47,9 +52,9 @@ const ListTodos = ({
                     disabled={todo.todo_id === editID}
                     className='btn btn-white'
                     onClick={() => {
-                      setSwitchOp(false);
                       setId(todo.todo_id);
                       setEditTodo(todo.description);
+                      setSwitchOp(false);
                     }}
                   >
                     Edit
@@ -83,6 +88,7 @@ ListTodos.propTypes = {
   setSwitchOp: PropTypes.func,
   setId: PropTypes.func,
   id: PropTypes.number,
+  editTodo: PropTypes.string,
 };
 
 export default ListTodos;
